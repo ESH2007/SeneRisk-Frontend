@@ -1,29 +1,17 @@
-# senerisk_app
+# SeneRisk Atlas
 
-A new Flutter project.
+App Flutter de reportes y mapa de riesgo para Colombia: mapa vectorial offline (PMTiles + MapLibre),
+mapa de calor y reportes ciudadanos. Backend en
+[SeneRisk-Backend](https://github.com/ESH2007/SeneRisk-Backend).
 
-# 1. servidor local (una vez por sesión)
-cd tools/maps && MAPS_BASE_URL=http://127.0.0.1:8000 ./build_tiles.sh
-mkdir -p out/20260920 && ln -f out/*.pmtiles out/20260920/
-(cd out && python3 -m http.server 8000 &)
+## Instalación
 
-# 2. túnel USB (se pierde al desconectar el cable; repetir)
-adb reverse tcp:8000 tcp:8000
+**[INSTALL.md](INSTALL.md)** — guía paso a paso: clonar los dos repos, backend Django,
+Supabase (opcional), mapas y compilación para Android, iOS, Web, Windows y macOS.
 
-# 3. app
-cd ../../frontend
-flutter run --profile --dart-define=MAPS_BASE_URL=http://127.0.0.1:8000
+Arranque rápido (sin backend, datos de prueba):
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+flutter pub get
+flutter run --dart-define=MAPS_BASE_URL=https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas
+```

@@ -1,6 +1,6 @@
 // Genera assets/maps/light_v4.json: estilo Protomaps v4 "light" adaptado a lo que
 // soporta vector_tile_renderer 6.x (sin `format`, `in` solo en sintaxis legacy, sin `length`).
-// Uso: npm i @protomaps/basemaps && node gen_style.mjs > ../../frontend/assets/maps/light_v4.json
+// Uso: npm i @protomaps/basemaps && node gen_style.mjs > ../../assets/maps/light_v4.json
 import { layers, namedFlavor } from "@protomaps/basemaps";
 
 const isArr = Array.isArray;

@@ -18,10 +18,9 @@
 #   HEAT_MOCK_POINTS  puntos mock del mapa de calor (solo con --mock)
 set -euo pipefail
 SCRIPT=$(readlink -f "$0")
-cd "$(dirname "$SCRIPT")/.."
-RAIZ=$PWD
-FRONT=$RAIZ/frontend
-BACK=$RAIZ/backend
+cd "$(dirname "$SCRIPT")/.."   # raíz del repo frontend
+FRONT=$PWD
+BACK=$FRONT/../backend        # repo SeneRisk-Backend, clonado al lado
 
 MAPS_BASE_URL=${MAPS_BASE_URL:-https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas}
 API_BASE_URL=${API_BASE_URL:-}
@@ -45,7 +44,7 @@ backend_local() {
   # Django contra Supabase (backend/.env) y túnel USB para que el teléfono lo vea en 127.0.0.1
   if ! curl -s -m 2 -o /dev/null "http://127.0.0.1:$PUERTO_LOCAL/api/reportes/"; then
     echo ">> arrancando backend en 127.0.0.1:$PUERTO_LOCAL"
-    (cd "$BACK" && set -a && source .env && set +a && setsid nohup ../.venv/bin/python manage.py runserver 127.0.0.1:$PUERTO_LOCAL >/tmp/senerisk_backend.log 2>&1 </dev/null &)
+    (cd "$BACK" && set -a && source .env && set +a && setsid nohup "$(command -v ./.venv/bin/python || command -v python3)" manage.py runserver 127.0.0.1:$PUERTO_LOCAL >/tmp/senerisk_backend.log 2>&1 </dev/null &)
     sleep 4
   fi
   "$(adb_bin)" reverse tcp:$PUERTO_LOCAL tcp:$PUERTO_LOCAL >/dev/null 2>&1 || true
