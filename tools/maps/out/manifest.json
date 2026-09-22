@@ -1,0 +1,145 @@
+{
+  "base": {
+    "bbox": [
+      -81.85,
+      -4.39,
+      -66.73,
+      13.45
+    ],
+    "build": "20260920",
+    "bytes": 31813302,
+    "id": "colombia",
+    "maxzoom": 11,
+    "minzoom": 0,
+    "name": "Colombia (base)",
+    "schema": "v4",
+    "sha256": "c42fde806f8b659d5111f9dc8cee892918fa2edfd8b1198f1f71401f033a99a2",
+    "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/colombia.pmtiles"
+  },
+  "base_parts": [
+    {
+      "bbox": [
+        -81.85,
+        -4.39,
+        -66.73,
+        13.45
+      ],
+      "build": "20260920",
+      "bytes": 41839977,
+      "id": "colombia_z12",
+      "maxzoom": 12,
+      "minzoom": 12,
+      "name": "Colombia (detalle z12)",
+      "schema": "v4",
+      "sha256": "6ff6c8b1944f2bef783ac982b833d2cd98930ef04279de8bb56edeafddb4ddbb",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/colombia_z12.pmtiles"
+    }
+  ],
+  "build": "20260920",
+  "national_detail": null,
+  "regions": [
+    {
+      "bbox": [
+        -74.35,
+        4.45,
+        -73.95,
+        4.95
+      ],
+      "build": "20260920",
+      "bytes": 20262264,
+      "id": "bogota_sabana",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Bogotá y Sabana",
+      "schema": "v4",
+      "sha256": "f7ed3c833cf2f348e8ccf4d76a260e59cca7981d7dafb51e30184ab3cdf0b311",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/bogota_sabana.pmtiles"
+    },
+    {
+      "bbox": [
+        -75.72,
+        6.05,
+        -75.4,
+        6.4
+      ],
+      "build": "20260920",
+      "bytes": 11204748,
+      "id": "medellin",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Medellín y Valle de Aburrá",
+      "schema": "v4",
+      "sha256": "6b82e20a2c46f574f8312b3721974079955b419b668e704063bf3b4342adf307",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/medellin.pmtiles"
+    },
+    {
+      "bbox": [
+        -76.62,
+        3.2,
+        -76.42,
+        3.62
+      ],
+      "build": "20260920",
+      "bytes": 4921089,
+      "id": "cali",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Cali, Jamundí y Yumbo",
+      "schema": "v4",
+      "sha256": "4b96cca264ca59839fa16e2ee408706df57a2cea50351532779f83cb76b782fa",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/cali.pmtiles"
+    },
+    {
+      "bbox": [
+        -74.98,
+        10.84,
+        -74.72,
+        11.08
+      ],
+      "build": "20260920",
+      "bytes": 9832491,
+      "id": "barranquilla",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Barranquilla y área metropolitana",
+      "schema": "v4",
+      "sha256": "e9c3d484a1a1fd03b802357558363b50ff4618763945f5caf062a0982030b12d",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/barranquilla.pmtiles"
+    },
+    {
+      "bbox": [
+        -75.58,
+        10.3,
+        -75.38,
+        10.5
+      ],
+      "build": "20260920",
+      "bytes": 2779257,
+      "id": "cartagena",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Cartagena y Turbaco",
+      "schema": "v4",
+      "sha256": "65b9d51f4571a74b1168605ca477dbcdf1fe6015caba381e95fc0e6cb242aef2",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/cartagena.pmtiles"
+    },
+    {
+      "bbox": [
+        -73.2,
+        6.95,
+        -73.02,
+        7.18
+      ],
+      "build": "20260920",
+      "bytes": 3936161,
+      "id": "bucaramanga",
+      "maxzoom": 15,
+      "minzoom": 13,
+      "name": "Bucaramanga y área metropolitana",
+      "schema": "v4",
+      "sha256": "3bda896574cc951ff1e259c0d7d3f1c919ef616dd074088986997023b68cb4bd",
+      "url": "https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas/20260920/bucaramanga.pmtiles"
+    }
+  ],
+  "schema": "v4"
+}

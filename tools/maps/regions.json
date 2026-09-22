@@ -1,0 +1,97 @@
+{
+  "build": "20260920",
+  "schema": "v4",
+  "base": {
+    "id": "colombia",
+    "name": "Colombia (base)",
+    "region": "colombia.geojson",
+    "bbox": [
+      -81.85,
+      -4.39,
+      -66.73,
+      13.45
+    ],
+    "minzoom": 0,
+    "maxzoom": 11
+  },
+  "regions": [
+    {
+      "id": "bogota_sabana",
+      "name": "Bogotá y Sabana",
+      "bbox": [
+        -74.35,
+        4.45,
+        -73.95,
+        4.95
+      ]
+    },
+    {
+      "id": "medellin",
+      "name": "Medellín y Valle de Aburrá",
+      "bbox": [
+        -75.72,
+        6.05,
+        -75.4,
+        6.4
+      ]
+    },
+    {
+      "id": "cali",
+      "name": "Cali, Jamundí y Yumbo",
+      "bbox": [
+        -76.62,
+        3.2,
+        -76.42,
+        3.62
+      ]
+    },
+    {
+      "id": "barranquilla",
+      "name": "Barranquilla y área metropolitana",
+      "bbox": [
+        -74.98,
+        10.84,
+        -74.72,
+        11.08
+      ]
+    },
+    {
+      "id": "cartagena",
+      "name": "Cartagena y Turbaco",
+      "bbox": [
+        -75.58,
+        10.3,
+        -75.38,
+        10.5
+      ]
+    },
+    {
+      "id": "bucaramanga",
+      "name": "Bucaramanga y área metropolitana",
+      "bbox": [
+        -73.2,
+        6.95,
+        -73.02,
+        7.18
+      ]
+    }
+  ],
+  "detail_zoom": {
+    "min": 13,
+    "max": 15
+  },
+  "base_extra": {
+    "id": "colombia_z12",
+    "name": "Colombia (detalle z12)",
+    "region": "colombia.geojson",
+    "bbox": [
+      -81.85,
+      -4.39,
+      -66.73,
+      13.45
+    ],
+    "minzoom": 12,
+    "maxzoom": 12,
+    "_nota": "Supabase Storage (plan gratis) limita a 50 MB por archivo: la base va en dos partes"
+  }
+}
