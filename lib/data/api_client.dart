@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -22,6 +25,8 @@ class ApiClient {
   ApiClient({http.Client? client}) : _http = client ?? http.Client();
 
   static const _kToken = 'api_token';
+  // Render (plan gratis) tarda ~50 s en despertar
+  static const _timeout = Duration(seconds: 60);
   final http.Client _http;
   String? token;
 
@@ -47,13 +52,13 @@ class ApiClient {
   Uri _uri(String path, [Map<String, String>? query]) => Uri.parse('$apiBaseUrl$path').replace(queryParameters: query);
 
   Future<dynamic> get(String path, {Map<String, String>? query}) async =>
-      _decode(await _http.get(_uri(path, query), headers: _headers).timeout(const Duration(seconds: 15)));
+      _decode(await _http.get(_uri(path, query), headers: _headers).timeout(_timeout));
 
   Future<dynamic> send(String method, String path, {Object? body}) async {
     final req = http.Request(method, _uri(path))
       ..headers.addAll({..._headers, 'Content-Type': 'application/json'})
       ..body = jsonEncode(body ?? {});
-    return _decode(await http.Response.fromStream(await _http.send(req).timeout(const Duration(seconds: 15))));
+    return _decode(await http.Response.fromStream(await _http.send(req).timeout(_timeout)));
   }
 
   Future<dynamic> multipart(String path, Map<String, String> fields, {String? archivoCampo, String? archivoRuta}) async {
@@ -67,7 +72,12 @@ class ApiClient {
   }
 
   dynamic _decode(http.Response r) {
-    final body = r.body.isEmpty ? null : jsonDecode(utf8.decode(r.bodyBytes));
+    dynamic body;
+    try {
+      body = r.body.isEmpty ? null : jsonDecode(utf8.decode(r.bodyBytes));
+    } on FormatException {
+      body = null; // HTML de error (proxy de Render, Django sin DEBUG): se reporta por status
+    }
     if (r.statusCode >= 200 && r.statusCode < 300) return body;
     throw ApiException(_mensaje(body, r.statusCode), r.statusCode);
   }
@@ -93,10 +103,14 @@ class ApiClient {
 }
 
 /// Convierte fallos de red en un mensaje corto para la UI.
-String mensajeDeError(Object e) => switch (e) {
-      ApiException() => e.message,
-      SocketException() || HttpException() => 'Sin conexión con el servidor',
-      _ => 'Algo salió mal, intenta de nuevo',
-    };
+String mensajeDeError(Object e) {
+  debugPrint('API error ($apiBaseUrl): ${e.runtimeType}: $e');
+  return switch (e) {
+    ApiException() => e.message,
+    TimeoutException() => 'El servidor tardó demasiado, intenta de nuevo',
+    SocketException() || HttpException() => 'Sin conexión con el servidor',
+    _ => 'Algo salió mal, intenta de nuevo',
+  };
+}
 
 final apiClientProvider = Provider<ApiClient>((_) => ApiClient());
