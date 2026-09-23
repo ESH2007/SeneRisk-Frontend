@@ -8,9 +8,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// `--dart-define=API_BASE_URL=http://127.0.0.1:8000/api`. Vacío = modo mock (sin backend).
-const apiBaseUrl = String.fromEnvironment('API_BASE_URL');
-const usaApi = apiBaseUrl != '';
+/// Por defecto el backend en Render, así compila bien desde Xcode/IDE sin `--dart-define`.
+/// Local: `--dart-define=API_BASE_URL=http://127.0.0.1:8000/api`. Sin backend: `--dart-define=MOCK=true`.
+const apiBaseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'https://senerisk-backend.onrender.com/api');
+const usaApi = !bool.fromEnvironment('MOCK');
 
 class ApiException implements Exception {
   const ApiException(this.message, [this.status]);

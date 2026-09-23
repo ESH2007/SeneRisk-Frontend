@@ -8,7 +8,7 @@
 #   tools/app.sh ios                                  # iOS (solo en macOS con Xcode)
 #   tools/app.sh linux | web                          # escritorio Linux / web
 #
-#   --local    backend Django en este PC (arranca runserver + túnel adb reverse); por defecto usa API_BASE_URL
+#   --local    backend Django en este PC (arranca runserver + túnel adb reverse); por defecto Render
 #   --mock     sin backend: datos de prueba en memoria (mapas sí, desde el bucket)
 #   --profile  compila en modo profile (log PERF de frames en logcat)
 #
@@ -23,7 +23,7 @@ FRONT=$PWD
 BACK=$FRONT/../backend        # repo SeneRisk-Backend, clonado al lado
 
 MAPS_BASE_URL=${MAPS_BASE_URL:-https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas}
-API_BASE_URL=${API_BASE_URL:-}
+API_BASE_URL=${API_BASE_URL:-https://senerisk-backend.onrender.com/api}
 PUERTO_LOCAL=8001
 
 cmd=${1:-}; shift || true
@@ -54,9 +54,8 @@ backend_local() {
 (( local )) && backend_local
 D=(--dart-define=MAPS_BASE_URL="$MAPS_BASE_URL")
 if (( mock )); then
-  D+=(--dart-define=HEAT_MOCK_POINTS="${HEAT_MOCK_POINTS:-1000}")
+  D+=(--dart-define=MOCK=true --dart-define=HEAT_MOCK_POINTS="${HEAT_MOCK_POINTS:-1000}")
 else
-  [[ -n $API_BASE_URL ]] || { echo "falta API_BASE_URL (exporta la variable, o usa --local / --mock)" >&2; exit 1; }
   D+=(--dart-define=API_BASE_URL="$API_BASE_URL")
 fi
 cd "$FRONT"

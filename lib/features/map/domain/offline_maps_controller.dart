@@ -12,7 +12,7 @@ import '../data/map_manifest.dart';
 import '../data/map_storage.dart';
 
 /// Base del bucket de mapas: `flutter run --dart-define=MAPS_BASE_URL=https://...`.
-const mapsBaseUrl = String.fromEnvironment('MAPS_BASE_URL', defaultValue: 'https://maps.example.com/tiles');
+const mapsBaseUrl = String.fromEnvironment('MAPS_BASE_URL', defaultValue: 'https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas');
 
 enum MapStatus { notInstalled, downloading, installed, updateAvailable }
 

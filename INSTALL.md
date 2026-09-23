@@ -100,7 +100,7 @@ cd frontend && flutter pub get
 flutter run --dart-define=MAPS_BASE_URL=https://npeenpccsmsodyonhxzo.supabase.co/storage/v1/object/public/mapas
 ```
 
-Sin `API_BASE_URL` la app entra en **modo mock**: reportes de prueba en memoria, pero mapas reales.
+Sin `--dart-define` la app usa el backend de Render y los mapas de Supabase. Con `--dart-define=MOCK=true` entra en **modo mock**: reportes de prueba en memoria, pero mapas reales.
 Si esto funciona, lo demás es opcional.
 
 ---
@@ -111,8 +111,9 @@ Todo se pasa con `--dart-define` al compilar (no hay archivo de configuración):
 
 | Variable | Qué es | Por defecto |
 |---|---|---|
-| `MAPS_BASE_URL` | Bucket público con `manifest.json` y los `.pmtiles` | `https://maps.example.com/tiles` (inválido: **siempre pásala**) |
-| `API_BASE_URL` | URL del backend, **terminada en `/api`** | vacío = modo mock |
+| `MAPS_BASE_URL` | Bucket público con `manifest.json` y los `.pmtiles` | bucket de Supabase del proyecto |
+| `API_BASE_URL` | URL del backend, **terminada en `/api`** | `https://senerisk-backend.onrender.com/api` |
+| `MOCK` | `true` = sin backend, datos de prueba en memoria | `false` |
 | `HEAT_MOCK_POINTS` | Puntos falsos del mapa de calor (solo en modo mock) | `1000` |
 
 Ejemplo completo:
